@@ -45,10 +45,18 @@ public class MongoDB implements MongoDBService {
     public boolean updateAdherentInfo(Map<Object, Object> updateInfo) {
         return false;
     }
+
+    @Override
+    public MongoCollection<Document> getSecurityUserCollection() {
+        return adherentCollection;
+    }
     /*   waterSlideCollection.deleteOne(eq("visitor_id",visitorId));*/
 
         /*Bson filter = eq("visitor_id", visitorId);
         Bson change = push("videos", videoUrl);
         waterSlideCollection.updateOne(filter, change);*/
+
+
+
 
 }

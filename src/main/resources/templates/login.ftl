@@ -179,7 +179,7 @@
                 var url = "";
 
                 if(JsonData.login == truelogin && JsonData.pwd == truepwd ){
-                    url = 'http://'+window._server+":"+_server.port+'/test';
+                    url = 'http://'+window.location.hostname+":"+window.location.port+'/test';
                     alert(url);
                 }else{
                     alert("error");

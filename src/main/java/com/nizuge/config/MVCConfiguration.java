@@ -11,7 +11,8 @@ public class MVCConfiguration implements WebMvcConfigurer {
     //请求直接映射页面
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("login");
+        registry.addViewController("/").setViewName("welcome");
+        registry.addViewController("/index").setViewName("index");
     }
 
     //静态资源映射

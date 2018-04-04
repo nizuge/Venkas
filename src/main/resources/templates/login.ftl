@@ -21,6 +21,7 @@
         <span>登录</span>
     </div>
     <div class='login_fields'>
+    <form name="form" action="/login" method="post">
         <div class='login_fields__user'>
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
@@ -48,9 +49,12 @@
                 <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
             </div>
         </div>
+        <security:form-login login-processing-url="/j_spring_security_check" username-parameter="j_username"/>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class='login_fields__submit'>
-            <input id="login_in" type='button' value='登录'>
+            <input id="login_in" type='submit' value='登录'>
         </div>
+    </form>
     </div>
     <div class='success'>
     </div>

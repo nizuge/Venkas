@@ -3,9 +3,10 @@ package com.nizuge.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 @Configuration
-public class MVCConfiguration extends WebMvcConfigurerAdapter {
+public class MVCConfiguration implements WebMvcConfigurer {
 
     //请求直接映射页面
     @Override

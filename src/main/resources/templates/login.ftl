@@ -26,7 +26,7 @@
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
             </div>
-            <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="123456"/>
+            <input name="username" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="123456"/>
             <div class='validation'>
                 <img alt="" src='/static/layui_login/img/tick.png'>
             </div>
@@ -35,7 +35,7 @@
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/lock_icon_copy.png'>
             </div>
-            <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
+            <input name="password" placeholder='密码' maxlength="16" type='text' autocomplete="off">
             <div class='validation'>
                 <img alt="" src='/static/layui_login/img/tick.png'>
             </div>
@@ -119,7 +119,7 @@
         dotColor: '#E8DFE8',
         lineColor: '#133b88'
     });
-    $('input[name="pwd"]').focus(function () {
+    $('input[name="password"]').focus(function () {
         $(this).attr('type', 'password');
     });
     $('input[type="text"]').focus(function () {
@@ -128,7 +128,7 @@
     $('input[type="text"],input[type="password"]').blur(function () {
         $(this).prev().animate({ 'opacity': '.5' }, 200);
     });
-    $('input[name="login"],input[name="pwd"]').keyup(function () {
+    $('input[name="username"],input[name="password"]').keyup(function () {
         var Len = $(this).val().length;
         if (!$(this).val() == '' && Len >= 5) {
             $(this).next().animate({
@@ -146,12 +146,12 @@
     layui.use('layer', function () {
         //非空验证
         $('#login_in').click(function () {
-            var login = $('input[name="login"]').val();
-            var pwd = $('input[name="pwd"]').val();
+            var username = $('input[name="username"]').val();
+            var password = $('input[name="password"]').val();
             var code = $('input[name="code"]').val();
-            if (login == '') {
+            if (username == '') {
                 alert('请输入您的账号');
-            } else if (pwd == '') {
+            } else if (password == '') {
                 alert('请输入密码');
             } else if (code == '') {
                 alert('请输入验证码');
@@ -177,18 +177,10 @@
                     }).addClass('visible');
                 }, 500);
 
-                //登录
-                var JsonData = { login: login, pwd: pwd, code: code };
+                /*//登录
+                var JsonData = { login: login, password: password, code: code };
                 //此处做为ajax内部判断
-                var url = "";
-
-                if(JsonData.login == truelogin && JsonData.pwd == truepwd ){
-                    url = 'http://'+window.location.hostname+":"+window.location.port+'/test';
-                    alert(url);
-                }else{
-                    alert("error");
-                }
-
+                var url = 'http://'+window.location.hostname+":"+window.location.port+'/test';
 
                 AjaxPost(url, JsonData,
                         function () {
@@ -223,7 +215,7 @@
                                     AjaxErro(data);
                                 }
                             }, 2400);
-                        })
+                        })*/
             }
         })
     })

@@ -8,11 +8,11 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <title>登录界面</title>
-    <link href="/static/css/default.css" rel="stylesheet" type="text/css" />
+    <link href="/static/layui_login/css/default.css" rel="stylesheet" type="text/css" />
     <!--必要样式-->
-    <link href="/static/css/styles.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/demo.css" rel="stylesheet" type="text/css" />
-    <link href="/static/css/loaders.css" rel="stylesheet" type="text/css" />
+    <link href="/static/layui_login/css/styles.css" rel="stylesheet" type="text/css" />
+    <link href="/static/layui_login/css/demo.css" rel="stylesheet" type="text/css" />
+    <link href="/static/layui_login/css/loaders.css" rel="stylesheet" type="text/css" />
     <p hidden>感谢源码之家提供的前端源码支持 http://www.mycodes.net</p>
 </head>
 <body>
@@ -23,25 +23,25 @@
     <div class='login_fields'>
         <div class='login_fields__user'>
             <div class='icon'>
-                <img alt="" src='/static/img/user_icon_copy.png'>
+                <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
             </div>
             <input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="123456"/>
             <div class='validation'>
-                <img alt="" src='/static/img/tick.png'>
+                <img alt="" src='/static/layui_login/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img alt="" src='/static/img/lock_icon_copy.png'>
+                <img alt="" src='/static/layui_login/img/lock_icon_copy.png'>
             </div>
             <input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
             <div class='validation'>
-                <img alt="" src='/static/img/tick.png'>
+                <img alt="" src='/static/layui_login/img/tick.png'>
             </div>
         </div>
         <div class='login_fields__password'>
             <div class='icon'>
-                <img alt="" src='/static/img/key.png'>
+                <img alt="" src='/static/layui_login/img/key.png'>
             </div>
             <input name="code" placeholder='验证码' maxlength="4" type='text' name="ValidateNum" autocomplete="off">
             <div class='validation' style="opacity: 1; right: -5px;top: -3px;">
@@ -71,21 +71,17 @@
 </div>
 <div class="OverWindows"></div>
 
-<link href="/static/css/layui.css" rel="stylesheet" type="text/css" />
+<link href="/static/layui_login/layui/css/layui.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-<script type="text/javascript" src="/static/js/login/jquery-ui.min.js"></script>
-<script type="text/javascript" src='/static/js/login/stopExecutionOnTimeout.js?t=1'></script>
-<script type="text/javascript" src="/static/js/login/layui.js"></script>
-<script type="text/javascript" src="/static/js/login/Particleground.js"></script>
-<script type="text/javascript" src="/static/js/login/Treatment.js"></script>
-<script type="text/javascript" src="/static/js/login/jquery.mockjax.js"></script>
+<script type="text/javascript" src="/static/layui_login/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src='/static/layui_login/js/stopExecutionOnTimeout.js?t=1'></script>
+<script type="text/javascript" src="/static/layui_login/layui/layui.js"></script>
+<script type="text/javascript" src="/static/layui_login/js/Particleground.js"></script>
+<script type="text/javascript" src="/static/layui_login/js/Treatment.js"></script>
+<script type="text/javascript" src="/static/layui_login/js/jquery.mockjax.js"></script>
 <script type="text/javascript">
     var canGetCookie = 0;//是否支持存储Cookie 0 不支持 1 支持
-    //默认账号密码
-
-    var truelogin = "123456";
-    var truepwd = "123456";
 
     var CodeVal = 0;
     Code();
@@ -144,11 +140,6 @@
     });
     var open = 0;
     layui.use('layer', function () {
-        var msgalert = '默认账号:' + truelogin + '<br/> 默认密码:' + truepwd;
-        var index = layer.alert(msgalert, { icon: 6, time: 4000, offset: 't', closeBtn: 0, title: '友情提示', btn: [], anim: 2, shade: 0 });
-        layer.style(index, {
-            color: '#777'
-        });
         //非空验证
         $('#login_in').click(function () {
             var login = $('input[name="login"]').val();

@@ -19,9 +19,10 @@
 <div class='login'>
     <div class='login_title'>
         <span>登录</span>
+        <span style="color: #fd3714;font-size: 14px;padding-left: 20%">${msg}</span>
     </div>
     <div class='login_fields'>
-    <form name="form" action="/login" method="post">
+    <form id="login_form" name="form" action="/login" method="post">
         <div class='login_fields__user'>
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
@@ -52,7 +53,7 @@
         <security:form-login login-processing-url="/j_spring_security_check" username-parameter="j_username"/>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class='login_fields__submit'>
-            <input id="login_in" type='submit' value='登录'>
+            <input id="login_in" type='button' value='LOGIN'>
         </div>
     </form>
     </div>
@@ -62,6 +63,7 @@
         <p>感谢源码之家提供的前端源码支持，此处因页面展示固隐藏此链接。不敬之处请原谅，感激之至！</p>
         <p>欢迎登录后台管理系统  更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
     </div>
+
 </div>
 <div class='authent'>
     <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
@@ -151,13 +153,17 @@
             var code = $('input[name="code"]').val();
             if (username == '') {
                 alert('请输入您的账号');
+                $('input[name="username"]').focus();
             } else if (password == '') {
                 alert('请输入密码');
+                $('input[name="password"]').focus();
             } else if (code == '') {
                 alert('请输入验证码');
+                $('input[name="code"]').focus();
             } else if(code.toUpperCase() != CodeVal.toUpperCase()){
+                $('input[name="code"]').val("");
                 alert("验证码输入错误");
-                $()
+                $('input[name="code"]').focus();
             }else {
                 //认证中..
                 fullscreen();
@@ -177,6 +183,7 @@
                     }).addClass('visible');
                 }, 500);
 
+                document.getElementById("login_form").submit();
                 /*//登录
                 var JsonData = { login: login, password: password, code: code };
                 //此处做为ajax内部判断

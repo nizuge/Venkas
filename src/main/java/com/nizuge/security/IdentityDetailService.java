@@ -29,8 +29,8 @@ public class IdentityDetailService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-            Document result = mongoDB.getSecurityUserCollection().find(eq("ZID",username)).first();
+        long startTime = System.currentTimeMillis();
+        Document result = mongoDB.getSecurityUserCollection().find(eq("ZID",username)).first();
         if(result==null){
             throw new UsernameNotFoundException(username+" not exist");
         }
@@ -45,7 +45,12 @@ public class IdentityDetailService implements UserDetailsService{
         }
         //装配到UserDetails，相当于生成了一个<user>标签
         UserDetails userDetails = new User(result.getString("ZID"),result.getString("PWD"), true, true, true, true,getAuthorities(access) );
-
+        try {
+            if(System.currentTimeMillis()-startTime < 1500)
+                Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return userDetails;
     }
 

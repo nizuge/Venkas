@@ -1,4 +1,4 @@
-package com.nizuge.mongo;
+package cn.nizuge.mongo;
 
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;

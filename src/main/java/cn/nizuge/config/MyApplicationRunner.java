@@ -1,4 +1,4 @@
-package com.nizuge.config;
+package cn.nizuge.config;
 /**
  * 服务器启动时自动执行
  */

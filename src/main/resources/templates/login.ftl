@@ -27,7 +27,7 @@
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
             </div>
-            <input name="username" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="123456"/>
+            <input name="username" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value=""/>
             <div class='validation'>
                 <img alt="" src='/static/layui_login/img/tick.png'>
             </div>

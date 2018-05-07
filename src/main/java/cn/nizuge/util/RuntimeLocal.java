@@ -1,4 +1,4 @@
-package com.nizuge.util;
+package cn.nizuge.util;
 
 
 import org.slf4j.Logger;

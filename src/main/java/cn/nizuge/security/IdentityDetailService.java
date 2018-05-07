@@ -1,6 +1,6 @@
-package com.nizuge.security;
+package cn.nizuge.security;
 
-import com.nizuge.mongo.MongoDB;
+import cn.nizuge.mongo.MongoDB;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +46,8 @@ public class IdentityDetailService implements UserDetailsService{
         //装配到UserDetails，相当于生成了一个<user>标签
         UserDetails userDetails = new User(result.getString("ZID"),result.getString("PWD"), true, true, true, true,getAuthorities(access) );
         try {
-            if(System.currentTimeMillis()-startTime < 1500)
-                Thread.sleep(2000);
+            if( System.currentTimeMillis()-startTime < 2000)
+                Thread.sleep(1500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

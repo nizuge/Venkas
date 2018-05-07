@@ -1,4 +1,4 @@
-package com.nizuge.security;
+package cn.nizuge.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -45,6 +45,7 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutUrl("/logout")
                 .and()
+            //.csrf().disable()
             .httpBasic();
 
     }

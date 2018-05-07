@@ -1,7 +1,7 @@
-package com.nizuge.controller;
+package cn.nizuge.controller;
 
 
-import com.nizuge.config.GeneralConfig;
+import cn.nizuge.config.GeneralConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

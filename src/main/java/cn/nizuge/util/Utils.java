@@ -1,4 +1,4 @@
-package com.nizuge.util;
+package cn.nizuge.util;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

@@ -13,6 +13,7 @@ public class MVCConfiguration implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("welcome");
         registry.addViewController("/index").setViewName("home");
+        registry.addViewController("/master/home").setViewName("master");
     }
 
     //静态资源映射

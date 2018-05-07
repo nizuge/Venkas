@@ -7,7 +7,7 @@
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
-    <title>登录界面</title>
+    <title>注册界面</title>
     <link href="/static/layui_login/css/default.css" rel="stylesheet" type="text/css" />
     <!--必要样式-->
     <link href="/static/layui_login/css/styles.css" rel="stylesheet" type="text/css" />
@@ -18,11 +18,10 @@
 <body>
 <div class='login'>
     <div class='login_title'>
-        <span>登录</span>
+        <span>注册</span>
         <span id="msg" style="color: #fd3714;font-size: 14px;padding-left: 20%">${msg}</span>
     </div>
     <div class='login_fields'>
-    <form id="login_form" name="form" action="/login" method="post">
         <div class='login_fields__user'>
             <div class='icon'>
                 <img alt="" src='/static/layui_login/img/user_icon_copy.png'>
@@ -50,18 +49,14 @@
                 <canvas class="J_codeimg" id="myCanvas" onclick="Code();">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
             </div>
         </div>
-        <security:form-login login-processing-url="/j_spring_security_check" username-parameter="j_username"/>
-        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        <input id="csrf" type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <div class='login_fields__submit'>
-            <input id="login_in" type='button' value='LOGIN'>
+            <input id="login_in" type='button' value='ENROLL'>
         </div>
-    </form>
-
     </div>
     <div class='success'>
     </div>
-    <a href="/register"><span style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">立即注册</span></a>
-
+    <a href="/login"><span style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">已有帐号</span></a>
     <div class='disclaimer' hidden="hidden">
         <p>感谢源码之家提供的前端源码支持，此处因页面展示固隐藏此链接。不敬之处请原谅，感激之至！</p>
         <p>欢迎登录后台管理系统  更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
@@ -76,7 +71,7 @@
             <div></div>
         </div>
     </div>
-    <p>认证中...</p>
+    <p>注册中...</p>
 </div>
 <div class="OverWindows"></div>
 
@@ -186,7 +181,52 @@
                     }).addClass('visible');
                 }, 500);
 
-                document.getElementById("login_form").submit();
+
+                var enrollData = new FormData();
+                var csrf_name = $("#csrf").attr("name");
+                var csrf_token = $("#csrf").val();
+                enrollData.append("username", username);
+                enrollData.append("password", password);
+                enrollData.append(csrf_name,csrf_token);
+                $.ajax({
+                    url: "/pma/enrollCheck",
+                    type: "POST",
+                    data: enrollData,
+                    dataType: "text",
+                    success: function (data) {
+                        console.log(data);
+                        var jsonData = JSON.parse(data);
+                        setTimeout(function () {
+                            $('.authent').show().animate({ right: 90 }, {
+                                easing: 'easeOutQuint',
+                                duration: 600,
+                                queue: false
+                            });
+                            $('.authent').animate({ opacity: 0 }, {
+                                duration: 200,
+                                queue: false
+                            }).addClass('visible');
+                            $('.login').removeClass('testtwo'); //平移特效
+                        }, 2000);
+                        setTimeout(function () {
+                            $('.authent').hide();
+                            $('.login').removeClass('test');
+                            if (jsonData['status'] == 200) {
+                                $('.login div').fadeOut(100);
+                                $('.success').fadeIn(1000);
+                                $('.success').html(jsonData['msg']);
+                                //跳转操作
+                            } else {
+                                ErroAlert("注册失败");
+                            }
+                        }, 2400);
+                    },
+                    error: function (data) {
+                        console.log(data)
+                    },
+                    processData: false,
+                    contentType: false
+                });
 
             }
         })

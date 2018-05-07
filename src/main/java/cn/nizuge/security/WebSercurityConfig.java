@@ -28,7 +28,8 @@ public class WebSercurityConfig extends WebSecurityConfigurerAdapter {
         //注意链顺序
         http
             .authorizeRequests()
-                .antMatchers("/", "/home","/static/**").permitAll()
+                .antMatchers("/", "/home","/register","/pma/**","/static/**").permitAll()
+                .antMatchers("/master/**").hasRole("USER")
                 .antMatchers("/sys/**").hasRole("SYS")
                 .anyRequest().authenticated()
                 .and()

@@ -10,8 +10,6 @@ import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -22,10 +20,6 @@ import static com.mongodb.client.model.Filters.eq;
 public class MongoDB implements MongoDBService {
     @Autowired
     GeneralConfig config;
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
-    @Autowired
-    RedisTemplate redisTemplate;
 
     private static final Logger logger = LoggerFactory.getLogger(MongoDB.class);
     private final MongoClient mongoClient = new MongoClient("127.0.0.1");

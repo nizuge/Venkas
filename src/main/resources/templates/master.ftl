@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>黑夜主权(Night)</title>
+    <title>Master Zone</title>
 
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="apple-mobile-app-capable" content="yes">
@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="cononico">
     <meta name="application-name" content="Cononico" >
-
+yumoure
     <link rel="stylesheet" type="text/css" href="../static/master/css/main.css">
     <link rel="stylesheet" type="text/css" href="../static/master/css/process.css">
     <link rel="shortcut icon"  type="image/x-icon" href="../static/master/favicon.ico" />

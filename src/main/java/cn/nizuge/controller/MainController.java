@@ -1,7 +1,8 @@
 package cn.nizuge.controller;
 
 
-import cn.nizuge.config.GeneralConfig;
+import cn.nizuge.mongo.MongoDBService;
+import cn.nizuge.quadrant.pojo.Adherent;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,9 @@ public class MainController{
 
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
+    @Autowired
+    MongoDBService mongoDBService;
+
 
     @RequestMapping(value = "/login")
     public String login(Map<String,String> map,HttpServletRequest request){
@@ -31,6 +35,11 @@ public class MainController{
         if(request.getParameter("status")!=null){
             if(request.getParameter("status").equals("-1")){
                 msg = "用户名或密码错误";
+                try {
+                        Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
         map.put("msg",msg);
@@ -48,17 +57,26 @@ public class MainController{
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value = "/register")
-    public String register(Map<String,String> map,HttpServletRequest request){
-        String msg = "";
-        if(request.getParameter("status")!=null){
-            if(request.getParameter("status").equals("-1")){
-                msg = "注册失败,请稍候再试";
-            }
+    @RequestMapping(value = "/pma/enrollCheck")
+    @ResponseBody
+    public String enrollCheck(Adherent adherent){
+        Map<String,Object> reply = new HashMap<>();
+        int status = mongoDBService.registerAdherent(adherent);
+        switch (status){
+            case 1:
+                reply.put("status",200);
+                reply.put("msg","很好！<br/>你已经成功的吸引了我的注意力.....<br/>也许这里比你想象的有趣的多<br/>" +
+                        "的多的多的多<br/>的多的多<br/>的多<br/>!");
+                break;
+            case 0:
+                reply.put("status",500);
+                reply.put("msg","该用户名已被注册！");
+                break;
+            default:
+                reply.put("status",500);
+                reply.put("msg","未知错误！");
         }
-        map.put("msg",msg);
-        return "register";
+        return new JSONObject(reply).toJSONString();
     }
-
 
 }

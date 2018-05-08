@@ -13,6 +13,7 @@
 <a href="/admin/authorities">权限后台打印</a>
 <a href="/logout">退出登录</a>
 <a href="/sys/manager">系统管理</a>
+<a href="/master/home">站长主页</a>
 
 </body>
 </html>

@@ -19,7 +19,7 @@
 <div class='login'>
     <div class='login_title'>
         <span>注册</span>
-        <span id="msg" style="color: #fd3714;font-size: 14px;padding-left: 20%">${msg}</span>
+        <span id="msg" style="color: #fd3714;font-size: 14px;padding-left: 20%"></span>
     </div>
     <div class='login_fields'>
         <div class='login_fields__user'>
@@ -56,8 +56,9 @@
     </div>
     <div class='success'>
     </div>
-    <a href="/login"><span style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">已有帐号</span></a>
-    <div class='disclaimer' hidden="hidden">
+    <a href="/login"><span id="login_enrol" style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">已有帐号</span></a>
+    <div id="countdown" hidden style="position: absolute;left: 30%;top: 90%;color: #1E9FFF">2秒后自动进入主页</div>
+    <div class='disclaimer' hidden>
         <p>感谢源码之家提供的前端源码支持，此处因页面展示固隐藏此链接。不敬之处请原谅，感激之至！</p>
         <p>欢迎登录后台管理系统  更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
     </div>
@@ -146,6 +147,8 @@
     layui.use('layer', function () {
         //非空验证
         $('#login_in').click(function () {
+
+            $('#msg').html('');
             var username = $('input[name="username"]').val();
             var password = $('input[name="password"]').val();
             var code = $('input[name="code"]').val();
@@ -194,7 +197,6 @@
                     data: enrollData,
                     dataType: "text",
                     success: function (data) {
-                        console.log(data);
                         var jsonData = JSON.parse(data);
                         setTimeout(function () {
                             $('.authent').show().animate({ right: 90 }, {
@@ -212,12 +214,36 @@
                             $('.authent').hide();
                             $('.login').removeClass('test');
                             if (jsonData['status'] == 200) {
+                                $("#login_enrol").html("");
                                 $('.login div').fadeOut(100);
                                 $('.success').fadeIn(1000);
                                 $('.success').html(jsonData['msg']);
                                 //跳转操作
+                                $.ajax({
+                                    url: "/login",
+                                    type: "POST",
+                                    data: enrollData,
+                                    dataType: "text",
+                                    success: function () {
+                                        $("#countdown").show();
+                                        setTimeout(function () {
+                                            $("#countdown").html('1秒后自动进入主页');
+                                        },1000);
+                                        setTimeout(function () {
+                                            $("#countdown").html('0秒后自动进入主页');
+                                        },2000);
+                                        setTimeout(function () {
+                                            window.location.href="/index";
+                                        },2500);
+                                    },
+                                    error: function (data) {
+                                        console.log(data)
+                                    },
+                                    processData: false,
+                                    contentType: false
+                                });
                             } else {
-                                ErroAlert("注册失败");
+                                ErroAlert(jsonData['msg']);
                             }
                         }, 2400);
                     },

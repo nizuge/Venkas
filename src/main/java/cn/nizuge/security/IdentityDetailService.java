@@ -1,6 +1,7 @@
 package cn.nizuge.security;
 
 import cn.nizuge.mongo.MongoDB;
+import cn.nizuge.util.MyCryption;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +45,7 @@ public class IdentityDetailService implements UserDetailsService{
             access = 1;
         }
         //装配到UserDetails，相当于生成了一个<user>标签
-        UserDetails userDetails = new User(result.getString("ZID"),result.getString("PWD"), true, true, true, true,getAuthorities(access) );
+        UserDetails userDetails = new User(result.getString("ZID"), MyCryption.decrypt(result.getString("PWD")), true, true, true, true,getAuthorities(access) );
         try {
             if( System.currentTimeMillis()-startTime < 2000)
                 Thread.sleep(1500);

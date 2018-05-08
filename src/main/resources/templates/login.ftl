@@ -151,6 +151,7 @@
     layui.use('layer', function () {
         //非空验证
         $('#login_in').click(function () {
+            $('#msg').html('');
             var username = $('input[name="username"]').val();
             var password = $('input[name="password"]').val();
             var code = $('input[name="code"]').val();

@@ -1,5 +1,6 @@
 package cn.nizuge.mongo;
 
+import cn.nizuge.quadrant.pojo.Adherent;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.springframework.stereotype.Service;
@@ -10,7 +11,7 @@ import java.util.Map;
 @Service
 public interface MongoDBService {
 
-    boolean registerAdherent(String name, String password);
+    int registerAdherent(Adherent adherent);
 
     boolean updateAdherentInfo(Map<Object, Object> updateInfo);
 

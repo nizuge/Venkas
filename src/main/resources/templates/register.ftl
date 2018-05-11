@@ -13,7 +13,7 @@
     <link href="/static/layui_login/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="/static/layui_login/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="/static/layui_login/css/loaders.css" rel="stylesheet" type="text/css" />
-    <p hidden>感谢源码之家提供的前端源码支持 http://www.mycodes.net</p>
+    <p hidden>源码之家提供 http://www.mycodes.net</p>
 </head>
 <body>
 <div class='login'>
@@ -58,11 +58,6 @@
     </div>
     <a href="/login"><span id="login_enrol" style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">已有帐号</span></a>
     <div id="countdown" hidden style="position: absolute;left: 30%;top: 90%;color: #1E9FFF">2秒后自动进入主页</div>
-    <div class='disclaimer' hidden>
-        <p>感谢源码之家提供的前端源码支持，此处因页面展示固隐藏此链接。不敬之处请原谅，感激之至！</p>
-        <p>欢迎登录后台管理系统  更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
-    </div>
-
 </div>
 <div class='authent'>
     <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
@@ -192,7 +187,7 @@
                 enrollData.append("password", password);
                 enrollData.append(csrf_name,csrf_token);
                 $.ajax({
-                    url: "/pma/enrollCheck",
+                    url: "/pbc/enrollCheck",
                     type: "POST",
                     data: enrollData,
                     dataType: "text",
@@ -226,6 +221,7 @@
                                     dataType: "text",
                                     success: function () {
                                         $("#countdown").show();
+                                        document.cookie="username="+username;
                                         setTimeout(function () {
                                             $("#countdown").html('1秒后自动进入主页');
                                         },1000);

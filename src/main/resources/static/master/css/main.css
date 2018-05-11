@@ -1024,7 +1024,7 @@ body{
 .dingding_icon{
     width: 45px;
     height: 45px;
-    background: url(../images/icon/dingding.png);
+    background: url(../images/icon/zhifubao.png);
     background-repeat: no-repeat;
     background-size: 45px;
     display: block;
@@ -1452,11 +1452,11 @@ body{
     }
 
     #bar_container .bar.red {
-        border-bottom: 0.2rem solid #9f292a;
+        border-bottom: 0.2rem solid #e41b05;
     }
 
     #bar_container .bar.orange {
-        border-bottom: 0.2rem solid #dd481b;
+        border-bottom: 0.2rem solid #e96017;
     }
 
     #bar_container .bar.lila {
@@ -1467,11 +1467,16 @@ body{
         border-bottom: 5px solid #333434;
     }
 
-    #bar_container .bar.blue {
-        border-bottom: 5px solid #333434;
-    }
-
     #bar_container .bar.green {
-        border-bottom: 5px solid #dd481b;
+        border-bottom: 5px solid #55dd3e;
+    }
+    #bar_container .bar.golden {
+        border-bottom: 5px solid #ddd234;
+    }
+    #bar_container .bar.pink {
+        border-bottom: 5px solid #dd62ee;
+    }
+    #bar_container .bar.blue {
+        border-bottom: 5px solid #0fe5ee;
     }
 }

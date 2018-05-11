@@ -56,52 +56,53 @@
   border-bottom: 5px solid #dd481b;
 }
 
-.bar.lila {
-  background-color: #524656;
-  background-image: repeating-linear-gradient(-45deg, #524656, #524656 30px, #6d5d72 30px, #6d5d72 60px);
+
+.bar.green {
+  background-color: #7cda2b;
+   background-image: repeating-linear-gradient(-45deg, #8ddf39, #7cda2b 30px, #0bda33 30px, #0bda33 60px);
   background-size: 600px 100%;
   animation: barberpole 12s linear infinite;
   -webkit-animation: barberpole 12s linear infinite;
   -moz-animation: barberpole 12s linear infinite;
-  -ms-accelerator: barberpole 12s linear infinite;
   -o-animation: barberpole 12s linear infinite;
-  border-bottom: 5px solid #2a242c;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #0a8412;
 }
 
-.bar.gray {
-  background-color: #595b5a;
-  background-image: repeating-linear-gradient(-45deg, #595b5a, #595b5a 30px, #727574 30px, #727574 60px);
+.bar.golden {
+  background-color: #d8a711;
+  background-image: repeating-linear-gradient(-45deg, #ffbc17, #ffbe0e 30px, #fff06d 30px, #fff47e 60px);
   background-size: 600px 100%;
   animation: barberpole 12s linear infinite;
   -webkit-animation: barberpole 12s linear infinite;
   -moz-animation: barberpole 12s linear infinite;
-  -ms-accelerator: barberpole 12s linear infinite;
   -o-animation: barberpole 12s linear infinite;
-  border-bottom: 5px solid #333434;
+  -ms-accelerator: barberpole 12s linear infinite;
+  border-bottom: 5px solid #b3850c;
 }
 
 .bar.blue {
-  background-color: blueviolet;
-  background-image: repeating-linear-gradient(-45deg, #595b5a, #595b5a 30px, #727574 30px, #727574 60px);
+  background-color: #0f51d8;
+  background-image: repeating-linear-gradient(-45deg, #64f2ff, #64f2ff 30px, #10a2ff 30px, #10a2ff 60px);
   background-size: 600px 100%;
   animation: barberpole 12s linear infinite;
   -webkit-animation: barberpole 12s linear infinite;
   -moz-animation: barberpole 12s linear infinite;
   -o-animation: barberpole 12s linear infinite;
   -ms-accelerator: barberpole 12s linear infinite;
-  border-bottom: 5px solid #333434;
+  border-bottom: 5px solid #174e6b;
 }
 
-.bar.green {
-  background-color: green;
-   background-image: repeating-linear-gradient(-45deg, #cf4647, #cf4647 30px, #da6e6f 30px, #da6e6f 60px);
+.bar.pink {
+  background-color: #f10dd2;
+  background-image: repeating-linear-gradient(-45deg, #e585d1, #e585d1 30px, #ff40df 30px, #ff40df 60px);
   background-size: 600px 100%;
   animation: barberpole 12s linear infinite;
   -webkit-animation: barberpole 12s linear infinite;
   -moz-animation: barberpole 12s linear infinite;
   -o-animation: barberpole 12s linear infinite;
   -ms-accelerator: barberpole 12s linear infinite;
-  border-bottom: 5px solid #dd481b;
+  border-bottom: 5px solid #a21a99;
 }
 
 .bar.active:after, .bar.active:before {

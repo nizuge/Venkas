@@ -8,8 +8,7 @@
     <meta name="apple-mobile-app-capable" content="yes">
     <meta name="apple-mobile-app-status-bar-style" content="black">
 
-    <meta name="description" content="一只叫做黑夜的阿宅，想成为家喻户晓的大侠">
-    <meta name="keywords" content="二次元，宅属性，前端，编程，全栈，绘画，设计">
+    <meta name="description" content="我的地盘你做主">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="cononico">
@@ -101,16 +100,14 @@ yumoure
 
         <div class="box02_content box_content">
             <div id='bar_container' class="bar_container">
-                <div class='bar mint' data-percent='70' data-skill='HTML5+CSS3'></div>
-                <div class='bar red' data-percent='50' data-skill='JavaScript'></div>
-                <div class='bar lila' data-percent='50' data-skill='前端工程化'></div>
-                <div class='bar orange' data-percent='50' data-skill='Node.js'></div>
-                <div class='bar gray' data-percent='30' data-skill='Java || C++'></div>
-                <div class="bar blue" data-percent='50' data-skill='PS&AE&PR&AI'></div>
-                <div class="bar green" data-percent='60' data-skill='绘画'></div>
+                <div class='bar red' data-percent='70' data-skill='体力'></div>
+                <div class='bar blue' data-percent='50' data-skill='精神'></div>
+                <div class='bar golden' data-percent='20' data-skill='财力'></div>
+                <div class='bar green' data-percent='50' data-skill='运气'></div>
+                <div class='bar pink' data-percent='30' data-skill='桃花运'></div>
             </div>
             <div id="box02_text">
-                <h1>About Skill</h1>
+                <h1>今日感言</h1>
                 <div class="overline"></div>
                 <p>2012,第一次接触是C/C++,在拥挤的实验室</p>
                 <p>2013,三月份在寝室迷上了网络游戏</p>
@@ -328,11 +325,7 @@ yumoure
             </div>
         </div>
         <div class="foot_power">
-            <h3>©2016 Pwoerd
-                <a href="http://yoomeili.cn" title="Night" target="_blank"> Night's</a>
-                <a href="https://blog.yoomeili.cn" title="IceEnd">黑夜主权</a>
-                <a href="http://www.miitbeian.gov.cn/" title="beian" target="_blank">浙ICP备14039906号-1</a>
-            </h3>
+            <h3>©2018 NiZuGe 羽某人</h3>
         </div>
     </foot>
 </div>

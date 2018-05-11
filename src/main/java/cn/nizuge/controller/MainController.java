@@ -1,7 +1,7 @@
 package cn.nizuge.controller;
 
 
-import cn.nizuge.mongo.MongoDBService;
+import cn.nizuge.mongo.AdherentService;
 import cn.nizuge.quadrant.pojo.Adherent;
 import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
@@ -26,7 +26,7 @@ public class MainController{
     private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
     @Autowired
-    MongoDBService mongoDBService;
+    AdherentService adherentService;
 
 
     @RequestMapping(value = "/login")
@@ -57,11 +57,11 @@ public class MainController{
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value = "/pma/enrollCheck")
+    @RequestMapping(value = "/pbc/enrollCheck")
     @ResponseBody
     public String enrollCheck(Adherent adherent){
         Map<String,Object> reply = new HashMap<>();
-        int status = mongoDBService.registerAdherent(adherent);
+        int status = adherentService.registerAdherent(adherent);
         switch (status){
             case 1:
                 reply.put("status",200);
@@ -71,6 +71,10 @@ public class MainController{
             case 0:
                 reply.put("status",500);
                 reply.put("msg","该用户名已被注册！");
+                break;
+            case 2:
+                reply.put("status",500);
+                reply.put("msg","密码进行加密时出错！");
                 break;
             default:
                 reply.put("status",500);

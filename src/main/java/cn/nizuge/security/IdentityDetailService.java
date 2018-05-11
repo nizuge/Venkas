@@ -1,7 +1,10 @@
 package cn.nizuge.security;
 
-import cn.nizuge.mongo.MongoDB;
-import cn.nizuge.util.MyCryption;
+import cn.nizuge.jedis.JedisService;
+import cn.nizuge.mongo.dao.AdherantDao;
+import cn.nizuge.mongo.dao.RSAKeyPair;
+import cn.nizuge.quadrant.pojo.Adherent;
+import cn.nizuge.util.RSAUtil;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +17,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.spec.InvalidKeySpecException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,28 +30,48 @@ import static com.mongodb.client.model.Filters.eq;
 public class IdentityDetailService implements UserDetailsService{
 
     private static final Logger logger = LoggerFactory.getLogger(IdentityDetailService.class);
-
     @Autowired
-    MongoDB mongoDB;
+    AdherantDao adherantDao;
+    @Autowired
+    RSAUtil rsaUtil;
+    @Autowired
+    RSAKeyPair rsaKeyPair;
+    @Autowired
+    JedisService jedisService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         long startTime = System.currentTimeMillis();
-        Document result = mongoDB.getSecurityUserCollection().find(eq("ZID",username)).first();
-        if(result==null){
-            throw new UsernameNotFoundException(username+" not exist");
+        Integer access;
+        String password;
+        Object adherentObj = jedisService.getObject("ZID:"+username);
+        if(adherentObj != null && adherentObj instanceof Adherent){
+            access = ((Adherent) adherentObj).getAccess();
+            password = ((Adherent) adherentObj).getPassword();
+        }else {
+            Document result = adherantDao.selectOneAdherent(username).first();
+            if(result==null){
+                throw new UsernameNotFoundException(username+" not exist");
+            }
+            access = result.getInteger("ACCESS");
+            password = result.getString("PWD");
+            jedisService.setObject("ZID:"+username,new Adherent(username,password,access));
         }
         logger.info("用户登录："+username);
-        Integer access = null;
+
+        RSAPrivateKey rsaPrivateKey = null;
+        String decodePassword = "";
         try {
-            access = result.getInteger("ACCESS");
-        }catch (Exception e){
-            logger.error("用户:"+username+"权限等级获取失败");
+            rsaPrivateKey = rsaUtil.getPrivateKey(rsaKeyPair.getBase64PrivateKey());
+            decodePassword = rsaUtil.privateDecrypt(password,rsaPrivateKey);
+        } catch (NoSuchAlgorithmException e) {
             logger.error(e.getMessage());
-            access = 1;
+        } catch (InvalidKeySpecException e) {
+            logger.error(e.getMessage());
         }
+
         //装配到UserDetails，相当于生成了一个<user>标签
-        UserDetails userDetails = new User(result.getString("ZID"), MyCryption.decrypt(result.getString("PWD")), true, true, true, true,getAuthorities(access) );
+        UserDetails userDetails = new User(username, decodePassword, true, true, true, true,getAuthorities(access) );
         try {
             if( System.currentTimeMillis()-startTime < 2000)
                 Thread.sleep(1500);

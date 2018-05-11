@@ -13,7 +13,7 @@
     <link href="/static/layui_login/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="/static/layui_login/css/demo.css" rel="stylesheet" type="text/css" />
     <link href="/static/layui_login/css/loaders.css" rel="stylesheet" type="text/css" />
-    <p hidden>感谢源码之家提供的前端源码支持 http://www.mycodes.net</p>
+    <p hidden>源码之家提供 http://www.mycodes.net</p>
 </head>
 <body>
 <div class='login'>
@@ -62,11 +62,6 @@
     </div>
     <a href="/register"><span style="position: absolute;left: 40%;top: 90%;color: #1E9FFF;text-decoration: underline">立即注册</span></a>
 
-    <div class='disclaimer' hidden="hidden">
-        <p>感谢源码之家提供的前端源码支持，此处因页面展示固隐藏此链接。不敬之处请原谅，感激之至！</p>
-        <p>欢迎登录后台管理系统  更多源码：<a href="http://www.mycodes.net/" target="_blank">源码之家</a></p>
-    </div>
-
 </div>
 <div class='authent'>
     <div class="loader" style="height: 44px;width: 44px;margin-left: 28px;">
@@ -112,6 +107,19 @@
         ctx.fillStyle = "#E8DFE8";
         ctx.fillText(a, 0, 100);
     }
+    $(document).ready(function () {
+        var cookies = document.cookie.split(";");
+        for(var i=0;i<cookies.length;i++){
+            var cookie = cookies[i].split("=");
+            console.log(cookie[0]);
+            console.log(cookie[1]);
+            if(cookie[0].trim() == 'username'){
+                $('input[name="username"]').val(cookie[1]);
+            }
+
+        }
+
+    });
     $(document).keypress(function (e) {
         // 回车键事件
         if(e.which == 13){

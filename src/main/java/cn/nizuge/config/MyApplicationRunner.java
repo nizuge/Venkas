@@ -4,6 +4,8 @@ package cn.nizuge.config;
  */
 
 
+import cn.nizuge.mongo.dao.RSAKeyPair;
+import cn.nizuge.mongo.dao.VenkasDB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,18 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     @Autowired
     GeneralConfig config;
+    @Autowired
+    RSAKeyPair rsaKeyPair;
+    @Autowired
+    VenkasDB venkasDB;
 
 
     @Override
     public void run(ApplicationArguments arg) throws Exception {
-        logger.info("====== 启动时执行 =======");
-
+        logger.info("====== mongoDB 初始化 =======");
+        venkasDB.initVenkasDB();
+        logger.info("====== base64密钥对获取 =======");
+        rsaKeyPair.loadBase64KeyPair();
     }
 
 }
